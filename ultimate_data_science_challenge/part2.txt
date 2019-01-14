@@ -1,0 +1,31 @@
+Part 2 - Experiment and metrics design
+
+1. I would test if the reimbursement leads to a significant increase in drivers crossing the 
+toll bridge with a confidence of at least 95% (significance level of 0.05)
+
+2. I would randomly select a number of drivers (lets say 200). I would then divide split the
+drivers into two groups of equal size. Group A will get all their toll costs reimbursed,
+Group B won't. Then I would measure how often all drivers cross the bridge in a certain 
+direction (lets say from Gotham to Metropolis) over a given time period (lets say one month).
+
+This results in two distributions with the number of times each driver crossed the bridge
+from Gotham to Metropolis within one month. The average in the distribution for Group A is
+expected to be higher then for Group B. If that is the case, I would test if the difference
+in averages is significant. 
+
+To test the significance I would perform a permutation test: I would pool the results from
+Group A and B together, randomly split it into two groups of equal size, and then calculate
+the difference in average between the two groups. I would perform this random split 10,000
+times.
+
+Then, to test if the actual difference is significant on a 95% confidence level, I would 
+calculate how often the actual difference between the two groups exceeded the difference
+of the permutation test. This would give me the probability of the actual difference occuring
+if the reimbursement of tolls had no effect on the drivers behaviour. 
+
+As an example: if the actual difference in mean was 10 (on average Group A crossed the bridge
+10 times more than group B). And the difference between the two groups from 10,000 permutations
+was 10 or higher in 15 cases, then the probability that the toll reimbursement did not affect
+the drivers behaviour would be 15/10,000=0.0015=0.15%. The reimbursement of toll costs
+therefore significantly increased the number of bridge crossings with a confidence of 99.85%
+(exceeding our threshold for a 99.5% confidence intervel).
